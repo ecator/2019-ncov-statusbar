@@ -26,7 +26,7 @@ then
   exit 1
 fi
 
-curl -fsSL -o data/data/Wuhan-2019-nCoV.csv  https://raw.githubusercontent.com/canghailan/Wuhan-2019-nCoV/master/Wuhan-2019-nCoV.csv
+curl -fsSL -o data/Wuhan-2019-nCoV.csv  https://raw.githubusercontent.com/canghailan/Wuhan-2019-nCoV/master/Wuhan-2019-nCoV.csv
 if [ $? -ne 0 ]
 then
   echo get Wuhan-2019-nCoV.csv error >&2
