@@ -1,7 +1,5 @@
 # 概览
 
-![Auto generate data and push](https://github.com/ecator/2019-ncov-statusbar/workflows/Auto%20generate%20data%20and%20push/badge.svg?branch=master&event=schedule)
-
 生成2019武汉新型冠状病毒疫情状态图，数据来自于[canghailan/Wuhan-2019-nCoV](https://github.com/canghailan/Wuhan-2019-nCoV) :cat:
 
 可以直接以图片的方式嵌入到网页中。
@@ -12,16 +10,19 @@
 
 > 请使用Python3
 
-初期克隆下来后需要初始化子模块：
-
-```
-git submodule update --init
-```
-
 可能需要安装`Pillow`：
 
 ```
 pip3 install Pillow
+```
+
+初始化数据目录：
+
+```
+mkdir data
+curl -fsSL -o data/ChinaAreaCode.csv  https://raw.githubusercontent.com/canghailan/Wuhan-2019-nCoV/master/ChinaAreaCode.csv
+curl -fsSL -o data/CountryCode.csv  https://raw.githubusercontent.com/canghailan/Wuhan-2019-nCoV/master/CountryCode.csv
+curl -fsSL -o data/Wuhan-2019-nCoV.csv  https://raw.githubusercontent.com/canghailan/Wuhan-2019-nCoV/master/Wuhan-2019-nCoV.csv
 ```
 
 ## 市/区/县状态
@@ -34,7 +35,7 @@ pip3 install Pillow
 
 效果如下：
 
-![CN-420000-420000](https://raw.githubusercontent.com/ecator/2019-ncov-statusbar/gen-all/all/CN-420000-420100.png)
+![CN-420000-420000](http://2019-ncov-statusbar.nocode.site/CN-420000-420100.png)
 
 ## 省状态
 
@@ -46,7 +47,7 @@ pip3 install Pillow
 
 省略`-date`的话默认是系统日期，省略`--country`的话默认是`CN`，上面的效果如下：
 
-![CN-420000](https://raw.githubusercontent.com/ecator/2019-ncov-statusbar/gen-all/all/CN-420000.png)
+![CN-420000](http://2019-ncov-statusbar.nocode.site/CN-420000.png)
 
 ## 国家状态
 
@@ -58,7 +59,7 @@ pip3 install Pillow
 
 上面会输出`中国`的状态：
 
-![CN](https://raw.githubusercontent.com/ecator/2019-ncov-statusbar/gen-all/all/CN.png)
+![CN](http://2019-ncov-statusbar.nocode.site/CN.png)
 
 
 输出`日本`的状态：
@@ -67,7 +68,7 @@ pip3 install Pillow
 ./gen.py --country JP --province '' --city '' --out out.png
 ```
 
-![JP](https://raw.githubusercontent.com/ecator/2019-ncov-statusbar/gen-all/all/JP.png)
+![JP](http://2019-ncov-statusbar.nocode.site/JP.png)
 
 
 ## 注意事项
@@ -87,7 +88,7 @@ git submodule update --remote Wuhan-2019-nCoV
 
 # 自动生成
 
-本仓库利用[Action](https://github.com/ecator/2019-ncov-statusbar/actions)在每个小时的第5分钟会自动生成全部图片，结果可以在[gen-all/all](https://github.com/ecator/2019-ncov-statusbar/tree/gen-all/all)直接引用，文件名以`国家代码-省代码-城市代码.png`方式命名。
+有一台服务器在每个小时的第5分钟会自动生成全部图片，结果可以在 http://2019-ncov-statusbar.nocode.site/ 直接引用，文件名以`国家代码-省代码-城市代码.png`方式命名。
 
 # LICENCE
 
